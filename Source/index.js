@@ -1,4 +1,7 @@
 // DATE 
+
+
+
 function showDate() {
   let days = [
     "Sunday",
@@ -37,12 +40,14 @@ function showDate() {
     currentMinutes = `0${currentMinutes}`;
   }
   let currentTime = `${currentHour}:${currentMinutes}`;
-  return `${currentDay}, ${currentMonth} ${currentDate}, ${currentTime}`;
+  return `${currentDay}, ${currentTime}`;
 }
 
 let weatherDate = document.querySelector("#date");
 let now = new Date();
 weatherDate.innerHTML = showDate(now);
+
+//WEATHER
 
 function displayCityWeather(response) {
   event.preventDefault();
@@ -55,6 +60,14 @@ function displayCityWeather(response) {
   let temperatureMinElement = document.querySelector("#min-temp");
   let cityMinTemp = Math.round(response.data.main.temp_min);
   temperatureMinElement.innerHTML = `Min. ${cityMinTemp}°`;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML=(response.data.weather[0].description);
+let feelsElement = document.querySelector("#feels-like-value");
+feelsElement.innerHTML = `${Math.round(response.data.main.feels_like)}°`;
+let humidityElement = document.querySelector("#humidity-value");
+humidityElement.innerHTML = `${Math.round(response.data.main.humidity)}%`;
+let windElement = document.querySelector("#wind-value");
+windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
 }
 function displayPositionWeather(response) {
   let cityElement = document.querySelector("h1");
@@ -68,6 +81,14 @@ function displayPositionWeather(response) {
   let temperatureMinElement = document.querySelector("#min-temp");
   let locationMinTemp = Math.round(response.data.main.temp_min);
   temperatureMinElement.innerHTML = `Min. ${locationMinTemp}°`;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML=(response.data.weather[0].description);
+  let feelsElement = document.querySelector("#feels-like-value");
+feelsElement.innerHTML = `${Math.round(response.data.main.feels_like)}°`;
+let humidityElement = document.querySelector("#humidity-value");
+humidityElement.innerHTML = `${Math.round(response.data.main.humidity)}%`;
+let windElement = document.querySelector("#wind-value");
+windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
 }
 function handlePosition(position) {
   let lat = position.coords.latitude;

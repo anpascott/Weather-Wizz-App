@@ -1,10 +1,10 @@
+// DATE 
 function showDate() {
   let days = [
     "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
-
     "Thursday",
     "Friday",
     "Saturday",
@@ -43,6 +43,8 @@ let weatherDate = document.querySelector("#date");
 let now = new Date();
 weatherDate.innerHTML = showDate(now);
 
+//LOCATION / WEATHER
+
 function displayCityWeather(response) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temp-now");
@@ -66,14 +68,20 @@ function displayPositionWeather(response) {
   let locationMinTemp = Math.round(response.data.main.temp_min);
   temperatureMinElement.innerHTML = `Min. ${locationMinTemp}°`;
 }
+
+function displayLocationName(response) {
+   let cityElement = document.querySelector("h1");
+   cityElement.innerHTML = (response.data.names); 
+}
+
 function handlePosition(position) {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
-  let cityElement = document.querySelector("h1");
-  city.innerHTML = "Your Location";
   let apiKey = "54b3e201447a1afa52495e15558f28df";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayPositionWeather);
+  let apiLocationUrl =`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&limit=100&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayPositionWeather); 
+  axios.get(apiLocationUrl).then(displayLocationName); 
 }
 
 function useLocation(event) {
@@ -97,7 +105,7 @@ form.addEventListener("submit", handleSubmit);
 let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", useLocation);
 
-navigator.geolocation.getCurrentPosition(handlePosition);
+// navigator.geolocation.getCurrentPosition(handlePosition);
 
 // function convertToFahrenheit(event) {
 //   event.preventDefault();

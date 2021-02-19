@@ -1,14 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <title>Weather App</title>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Wizz</title>
-    <link rel="stylesheet" href="source/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@600&family=Raleway:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Source/style.css">
+    <script src="https://kit.fontawesome.com/6639bbba15.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
+
   <body>
-    <h1>Hello World</h1>
-    <script src="source/index.js"></script>
+  <div class="container">
+      <form> 
+      <div class="row">
+          <div class="col-8"> 
+              <input type="search" placeholder="Type a city.." autofocus="on" autocomplete="off" id="city-input" class="form-control shadow-sm">
+          </div>
+          <div class="col-2"> 
+              <input type="submit" value="Search" class="form-control btn btn-primary shadow-sm" id="search-button">
+            </div>
+          </form>
+          <div class="col-2"> 
+            <input type="submit" value="Use Location" class="form-control btn btn-success shadow-sm" id="current-location-button">
+          </div>
+        </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="main-img">
+          <img class= "nice-weather" src="Source/media/img/Sun_Two Color.png" alt="Nice Weather">
+      </div>
+    </div>
+
+      <div class="col-6">
+          <div class="general-info-container">
+            <h1 id="city">
+      Mérida
+    </h1>
+
+  </br>
+<h2 id="date">
+  Monday February 2, 2021
+</h2>
+</div>
+    <div class="temperature-container">
+    <div class="row">
+        <div class="col-8">
+          <h2>
+    <span id="temp-now"> 22 </span>
+
+    <span class="units">
+        <a href="#" id="celsius-link">°C</a> |
+        <a href="#" id="fahrenheit-link">°F</a>
+      </span>
+    </h2>
+    </div>
+      <div class="col-2">
+          <h3 class="max-temp" id="max-temp">
+            Max. 26°
+          </div>
+            </h3>
+            <div class="col-2">
+          <h3 class="min-temp" id="min-temp">
+            Min. 18°C
+            </h3>
+          </div>
+          </div>
+        </div>
+    </h2>
+              <div class="row">
+                  <div class="col">
+                      <p class="variable title">
+                        Precipitation:
+                      </p>
+                    </br>
+                        <p class="variable value" id="precipitation-value">
+                            0% 
+                        </p>
+                  </div>
+                  <div class="col">
+                      <p class="variable title">
+                        Humidity:
+                      </p>
+                    </br>
+                        <p class="variable value" id="humidity-value">
+                            80% 
+                        </p>
+                  </div>
+                  <div class="col">
+                      <p class="variable title">
+                        Wind:
+                      </p>
+                    </br>
+                        <p class="variable value" id="wind-value">
+                            4 km/h
+                        </p>
+                      </div>
+        </div>
+      </div>
+     <div>
+  </div>
+</div>
+<div class="row container-fc">
+  <div class="col-2">
+<p class="day-fc"> 
+  Sat.
+  <br/>
+  <i class="fas fa-cloud-sun"></i>
+<div class="row">
+  <div class="col-6">
+      <span class="max-temp-fc">
+        24°
+      </span>
+    </div>
+    <div class="col-6">
+      <span class="min-temp-fc">
+  17°
+      </span>
+    </div>
+    </div>
+    </p>
+</div>
+<div class="col-2">
+    <p class="day-fc"> 
+      Sun.
+      <br/>
+      <i class="fas fa-cloud-sun-rain"></i>
+      <div class="row">
+          <div class="col-6">
+              <span class="max-temp-fc">
+                23°
+              </span>
+            </div>
+            <div class="col-6">
+              <span class="min-temp-fc">
+          19°
+              </span>
+            </div>
+            </div>
+            </p>
+        </div>
+    <div class="col-2">
+        <p class="day-fc"> 
+          Mon.
+          <br/>
+          <i class="fas fa-cloud-sun-rain"></i>
+          <div class="row">
+              <div class="col-6">
+                  <span class="max-temp-fc">
+                    23°
+                  </span>
+                </div>
+                <div class="col-6">
+                  <span class="min-temp-fc">
+              18°
+                  </span>
+                </div>
+                </div>
+                </p>
+            </div>
+        <div class="col-2">
+            <p class="day-fc"> 
+              Tue.
+              <br/>
+              <i class="fas fa-cloud"></i>
+              <div class="row">
+                  <div class="col-6">
+                      <span class="max-temp-fc">
+                        25°
+                      </span>
+                    </div>
+                    <div class="col-6">
+                      <span class="min-temp-fc">
+                  20°
+                      </span>
+                    </div>
+                    </div>
+                    </p>
+                </div>
+            <div class="col-2">
+              <p class="day-fc"> 
+                Wed.
+                <br/>
+                <i class="fas fa-cloud-sun-rain"></i>
+                <div class="row">
+                    <div class="col-6">
+                        <span class="max-temp-fc">
+                          23°
+                        </span>
+                      </div>
+                      <div class="col-6">
+                        <span class="min-temp-fc">
+                    17°
+                        </span>
+                      </div>
+                      </div>
+                      </p>
+                  </div>
+              <div class="col-2">
+                  <p class="day-fc"> 
+                    Thurs.
+                    <br/>
+                    <i class="fas fa-sun"></i>
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="max-temp-fc">
+                              28°
+                            </span>
+                          </div>
+                          <div class="col-6">
+                            <span class="min-temp-fc">
+                        21°
+                            </span>
+                          </div>
+                          </div>
+                          </p>
+                      </div>
+                      </div>
+                      <small id="repository">
+<a href="https://github.com/anpascott/weather-app.git" target="_blank">Open-source code</a>
+by Andrea Pacheco
+</small>
+</div>
+    <script src="Source/index.js"></script>
   </body>
 </html>

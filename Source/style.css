@@ -33,16 +33,13 @@ li {
   background: #e7dfd5;
   width: 70%;
 }
-.main-img img {
-  padding: 0;
-  margin: 15px;
-  position: relative;
-  top: 10px;
-  left: px;
+.main-img {
+  padding: 10px;
   background: white;
   border-radius: 150px;
   box-shadow: 5px 8px 9px;
 }
+
 .nice-weather {
   width: 250px;
 }

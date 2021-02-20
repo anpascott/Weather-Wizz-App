@@ -68,6 +68,9 @@ let humidityElement = document.querySelector("#humidity-value");
 humidityElement.innerHTML = `${Math.round(response.data.main.humidity)}%`;
 let windElement = document.querySelector("#wind-value");
 windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
+let iconElement = document.querySelector("#icon");
+iconElement.setAttribute ("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+iconElement.setAttribute ("alt",response.data.weather[0].description)
 }
 function displayPositionWeather(response) {
   let cityElement = document.querySelector("h1");
@@ -109,7 +112,8 @@ function handleSubmit(event) {
   let citySearch = input.value;
   city.innerHTML = `${citySearch}`;
   let apiKey = "54b3e201447a1afa52495e15558f28df";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${apiKey}&units=metric`;
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayCityWeather);
 }
 

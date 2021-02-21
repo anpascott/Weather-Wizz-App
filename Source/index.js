@@ -50,18 +50,19 @@ weatherDate.innerHTML = showDate(now);
 function displayCityWeather(response) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temp-now");
-  let cityTemp = Math.round(response.data.main.temp);
-  temperatureElement.innerHTML = `${cityTemp}`;
+  celsiusTemperature = Math.round(response.data.main.temp);
+  temperatureElement.innerHTML = `${celsiusTemperature}`;
   let temperatureMaxElement = document.querySelector("#max-temp");
-  let cityMaxTemp = Math.round(response.data.main.temp_max);
-  temperatureMaxElement.innerHTML = `${cityMaxTemp}`;
+  celsiusMaxTemperature = Math.round(response.data.main.temp_max);
+  temperatureMaxElement.innerHTML = `${celsiusMaxTemperature}`;
   let temperatureMinElement = document.querySelector("#min-temp");
-  let cityMinTemp = Math.round(response.data.main.temp_min);
-  temperatureMinElement.innerHTML = `${cityMinTemp}`;
+  celsiusMinTemperature = Math.round(response.data.main.temp_min);
+  temperatureMinElement.innerHTML = `${celsiusMinTemperature}`;
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML=(response.data.weather[0].description);
   let feelsElement = document.querySelector("#feels-like-value");
-  feelsElement.innerHTML = Math.round(response.data.main.feels_like);
+  feelsCelsiusTemperature = Math.round(response.data.main.feels_like);
+feelsElement.innerHTML = `${feelsCelsiusTemperature}`
   let humidityElement = document.querySelector("#humidity-value");
   humidityElement.innerHTML = Math.round(response.data.main.humidity);
   let windElement = document.querySelector("#wind-value");
@@ -86,7 +87,8 @@ function displayPositionWeather(response) {
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML=(response.data.weather[0].description);
   let feelsElement = document.querySelector("#feels-like-value");
-feelsElement.innerHTML = Math.round(response.data.main.feels_like);
+  feelsCelsiusTemperature = Math.round(response.data.main.feels_like);
+feelsElement.innerHTML = `${feelsCelsiusTemperature}`
 let humidityElement = document.querySelector("#humidity-value");
 humidityElement.innerHTML = Math.round(response.data.main.humidity);
 let windElement = document.querySelector("#wind-value");
@@ -120,6 +122,12 @@ function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temp-now");
   temperatureElement.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
+    let temperatureMaxElement = document.querySelector("#max-temp");
+  temperatureMaxElement.innerHTML = Math.round((celsiusMaxTemperature * 9) / 5 + 32);
+    let temperatureMinElement = document.querySelector("#min-temp");
+  temperatureMinElement.innerHTML = Math.round((celsiusMinTemperature * 9) / 5 + 32);
+    let feelsElement = document.querySelector("#feels-like-value");
+  feelsElement.innerHTML = Math.round((feelsCelsiusTemperature * 9) / 5 + 32);
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
 }
@@ -135,6 +143,7 @@ function convertToCelsius(event) {
 let celsiusTemperature = null;
 let celsiusMaxTemperature = null;
 let CelsiusMinTemperature = null;
+let feelsCelsiusTemperature = null;
 
 let form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);

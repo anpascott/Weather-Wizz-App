@@ -69,7 +69,7 @@ a {
   border-radius: 10px;
   margin: 0 auto;
   position: relative;
-  top: -15px;
+  top: 20px;
   box-shadow: 5px 5px 8px 1px;
 }
 
@@ -112,6 +112,12 @@ a {
   text-decoration: none;
 }
 
+.variable {
+  text-align: center;
+  margin-top: 0px;
+  font-size: 14px;
+}
+
 .active {
   color: rgb(94, 94, 94);
   cursor: default;
@@ -122,19 +128,6 @@ a {
 .active:hover {
   text-decoration: none;
   color: rgb(94, 94, 94);
-}
-
-.title {
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-}
-.value {
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 25px;
-  position: relative;
-  top: -35px;
 }
 
 #current-location-button {

@@ -1,7 +1,5 @@
 // DATE 
 
-
-
 function showDate() {
   let days = [
     "Sunday",
@@ -76,14 +74,14 @@ function displayPositionWeather(response) {
   let cityElement = document.querySelector("h1");
   city.innerHTML = (response.data.name);
   let temperatureElement = document.querySelector("#temp-now");
-  let locationTemp = Math.round(response.data.main.temp);
-  temperatureElement.innerHTML = `${locationTemp}`;
+  celsiusTemperature = Math.round(response.data.main.temp);
+  temperatureElement.innerHTML = `${celsiustemperature}`;
   let temperatureMaxElement = document.querySelector("#max-temp");
-  let locationMaxTemp = Math.round(response.data.main.temp_max);
-  temperatureMaxElement.innerHTML = `Max. ${locationMaxTemp}°`;
+  celsiusMaxTemperature = Math.round(response.data.main.temp_max);
+  temperatureMaxElement.innerHTML = `Max. ${celsiusMaxTemperature}°`;
   let temperatureMinElement = document.querySelector("#min-temp");
-  let locationMinTemp = Math.round(response.data.main.temp_min);
-  temperatureMinElement.innerHTML = `Min. ${locationMinTemp}°`;
+  celsiusMinTemperature = Math.round(response.data.main.temp_min);
+  temperatureMinElement.innerHTML = `Min. ${celsiusMinTemperature}°`;
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML=(response.data.weather[0].description);
   let feelsElement = document.querySelector("#feels-like-value");
@@ -117,31 +115,36 @@ function handleSubmit(event) {
   axios.get(apiUrl).then(displayCityWeather);
 }
 
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temp-now");
+  temperatureElement.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temp-now");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+    celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
+let celsiusTemperature = null;
+let celsiusMaxTemperature = null;
+let CelsiusMinTemperature = null;
+
 let form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);
 
 let currentLocation = document.querySelector("#current-location-button");
 currentLocation.addEventListener("click", useLocation);
 
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertToCelsius); 
+
 navigator.geolocation.getCurrentPosition(handlePosition);
-
-// function convertToFahrenheit(event) {
-//   event.preventDefault();
-//   let temperatureElement = document.querySelector("#temp-now");
-//   let temperature = temperatureElement.innerHTML;
-//   let temperatureValue = Number(temperature);
-//   temperatureElement.innerHTML = Math.round((temperatureValue * 9) / 5 + 32);
-// }
-
-// function convertToCelsius(event) {
-//   event.preventDefault();
-//   let temperatureElement = document.querySelector("#temp-now");
-//   let temperature = temperatureElement.innerHTML;
-//   temperatureElement.innerHTML = 22;
-// }
-
-// let fahrenheitLink = document.querySelector("#fahrenheit-link");
-// fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-// let celsiusLink = document.querySelector("#celsius-link");
-// celsiusLink.addEventListener("click", convertToCelsius); 

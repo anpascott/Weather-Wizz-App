@@ -24,6 +24,9 @@ li {
   text-transform: capitalize;
   text-align: center;
 }
+a {
+  text-decoration: none;
+}
 .container {
   max-width: 1500px;
   padding: 30px 40px;
@@ -33,13 +36,16 @@ li {
   background: #e7dfd5;
   width: 70%;
 }
-.main-img {
-  padding: 10px;
+.main-img img {
+  padding: 0;
+  margin: 15px;
+  position: relative;
+  top: 10px;
+  left: px;
   background: white;
   border-radius: 150px;
   box-shadow: 5px 8px 9px;
 }
-
 .nice-weather {
   width: 250px;
 }
@@ -84,12 +90,6 @@ li {
   top: 15px;
 }
 
-#celsius-link,
-#fahrenheit-link {
-  text-decoration: none;
-  color: black;
-}
-
 .max-temp-fc,
 .min-temp-fc {
   font-size: 10px;
@@ -107,11 +107,23 @@ li {
 }
 .units {
   font-size: 14px;
-  color: #24285b;
-  text-decoration: none;
   position: relative;
   top: -10px;
+  text-decoration: none;
 }
+
+.active {
+  color: rgb(94, 94, 94);
+  cursor: default;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.active:hover {
+  text-decoration: none;
+  color: rgb(94, 94, 94);
+}
+
 .title {
   font-size: 14px;
   font-weight: bold;

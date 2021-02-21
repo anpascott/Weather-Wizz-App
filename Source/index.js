@@ -54,42 +54,43 @@ function displayCityWeather(response) {
   temperatureElement.innerHTML = `${cityTemp}`;
   let temperatureMaxElement = document.querySelector("#max-temp");
   let cityMaxTemp = Math.round(response.data.main.temp_max);
-  temperatureMaxElement.innerHTML = `Max. ${cityMaxTemp}°`;
+  temperatureMaxElement.innerHTML = `${cityMaxTemp}`;
   let temperatureMinElement = document.querySelector("#min-temp");
   let cityMinTemp = Math.round(response.data.main.temp_min);
-  temperatureMinElement.innerHTML = `Min. ${cityMinTemp}°`;
+  temperatureMinElement.innerHTML = `${cityMinTemp}`;
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML=(response.data.weather[0].description);
-let feelsElement = document.querySelector("#feels-like-value");
-feelsElement.innerHTML = `${Math.round(response.data.main.feels_like)}°`;
-let humidityElement = document.querySelector("#humidity-value");
-humidityElement.innerHTML = `${Math.round(response.data.main.humidity)}%`;
-let windElement = document.querySelector("#wind-value");
-windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
-let iconElement = document.querySelector("#icon");
-iconElement.setAttribute ("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
-iconElement.setAttribute ("alt",response.data.weather[0].description)
-}
+  let feelsElement = document.querySelector("#feels-like-value");
+  feelsElement.innerHTML = Math.round(response.data.main.feels_like);
+  let humidityElement = document.querySelector("#humidity-value");
+  humidityElement.innerHTML = Math.round(response.data.main.humidity);
+  let windElement = document.querySelector("#wind-value");
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute ("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+  iconElement.setAttribute ("alt",response.data.weather[0].description)
+  }
+
 function displayPositionWeather(response) {
   let cityElement = document.querySelector("h1");
   city.innerHTML = (response.data.name);
   let temperatureElement = document.querySelector("#temp-now");
   celsiusTemperature = Math.round(response.data.main.temp);
-  temperatureElement.innerHTML = `${celsiustemperature}`;
+  temperatureElement.innerHTML = `${celsiusTemperature}`;
   let temperatureMaxElement = document.querySelector("#max-temp");
   celsiusMaxTemperature = Math.round(response.data.main.temp_max);
-  temperatureMaxElement.innerHTML = `Max. ${celsiusMaxTemperature}°`;
+  temperatureMaxElement.innerHTML = `${celsiusMaxTemperature}`;
   let temperatureMinElement = document.querySelector("#min-temp");
   celsiusMinTemperature = Math.round(response.data.main.temp_min);
-  temperatureMinElement.innerHTML = `Min. ${celsiusMinTemperature}°`;
+  temperatureMinElement.innerHTML = `${celsiusMinTemperature}`;
   let descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML=(response.data.weather[0].description);
   let feelsElement = document.querySelector("#feels-like-value");
-feelsElement.innerHTML = `${Math.round(response.data.main.feels_like)}°`;
+feelsElement.innerHTML = Math.round(response.data.main.feels_like);
 let humidityElement = document.querySelector("#humidity-value");
-humidityElement.innerHTML = `${Math.round(response.data.main.humidity)}%`;
+humidityElement.innerHTML = Math.round(response.data.main.humidity);
 let windElement = document.querySelector("#wind-value");
-windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
+windElement.innerHTML = Math.round(response.data.wind.speed);
 }
 function handlePosition(position) {
   let lat = position.coords.latitude;

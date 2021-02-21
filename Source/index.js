@@ -70,6 +70,8 @@ feelsElement.innerHTML = `${feelsCelsiusTemperature}`
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute ("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
   iconElement.setAttribute ("alt",response.data.weather[0].description)
+    celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   }
 
 function displayPositionWeather(response) {
@@ -93,6 +95,8 @@ let humidityElement = document.querySelector("#humidity-value");
 humidityElement.innerHTML = Math.round(response.data.main.humidity);
 let windElement = document.querySelector("#wind-value");
 windElement.innerHTML = Math.round(response.data.wind.speed);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 function handlePosition(position) {
   let lat = position.coords.latitude;
@@ -136,8 +140,11 @@ function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temp-now");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
-    celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
+   temperatureMaxElement.innerHTML = Math.round(celsiusMaxTemperature);
+   temperatureMinElement.innerHTML = Math.round(celsiusMinTemperature);
+   feelsElement.innerHTML = Math.round(feelsCelsiusTemperature);
+   celsiusLink.classList.add("active");
+   fahrenheitLink.classList.remove("active");
 }
 
 let celsiusTemperature = null;
